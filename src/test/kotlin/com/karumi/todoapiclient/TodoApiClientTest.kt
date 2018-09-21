@@ -119,12 +119,32 @@ class TodoApiClientTest : MockWebServerTest() {
         assertGetRequestSentTo("/todos/1")
     }
 
-    /*
+    @Test
+    fun sendsRequestToTheCorrectPathUpdatingATask() {
+        enqueueMockResponse(200, "updateTaskResponse.json")
+
+        val task = TaskDto("1", "2", "Finish this kata", false)
+        apiClient.updateTaskById(task)
+
+        assertRequestSentTo("/todos/1")
+    }
+
     @Test
     fun `addTask success`() {
-        enqueueMockResponse(200, "addTaskResponse")
+        enqueueMockResponse(201, "addTaskResponse.json")
         val taskDto = TaskDto("2", "dsds", "any title", false)
-        val resultTaskDto = apiClient.addTask(taskDto)
+        apiClient.addTask(taskDto)
+        assertPostRequestSentTo("/todos")
+    }
+
+    /*
+    @Test
+    fun `delete`() {
+        enqueueMockResponse(200, "")
+
+        val todoApiClientError = apiClient.deleteTaskById("1")
+
+        assertDeleteRequestSentTo("/todos/1")
     }
     */
 
