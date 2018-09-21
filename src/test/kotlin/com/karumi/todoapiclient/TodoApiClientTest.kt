@@ -61,6 +61,27 @@ class TodoApiClientTest : MockWebServerTest() {
         //assertTaskContainsExpectedValues(tasks[0])
     }
 
+    @Test
+    fun returnsAnUnknownApiErrorIfTheServerFails() {
+        enqueueMockResponse(500)
+
+        val error = apiClient.allTasks.component1()!!
+
+        assertEquals(error, UnknownApiError(500))
+    }
+
+    /*
+    @Test
+    fun returnsAnUnknownApiErrorIfMalformedJson() {
+        enqueueMockResponse(200, "malformedJson.json")
+
+        // TODO this gives illegalstateexception, fix prod code and PR
+        val error = apiClient.allTasks.component1()!!
+
+        assertEquals(error, UnknownApiError(500))
+    }
+    */
+
 
     private fun assertTaskContainsExpectedValues(task: TaskDto?) {
         assertTrue(task != null)
