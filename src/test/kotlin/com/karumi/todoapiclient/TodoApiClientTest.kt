@@ -81,6 +81,15 @@ class TodoApiClientTest : MockWebServerTest() {
         assertEquals(error, UnknownApiError(500))
     }
     */
+    @Test
+    fun `getTaskById success`() {
+        enqueueMockResponse(200)
+
+        apiClient.getTaskById("1")
+        assertRequestSentTo("/todos/1")
+    }
+
+
 
 
     private fun assertTaskContainsExpectedValues(task: TaskDto?) {
