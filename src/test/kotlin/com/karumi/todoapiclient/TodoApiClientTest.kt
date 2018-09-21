@@ -119,6 +119,15 @@ class TodoApiClientTest : MockWebServerTest() {
         assertGetRequestSentTo("/todos/1")
     }
 
+    /*
+    @Test
+    fun `addTask success`() {
+        enqueueMockResponse(200, "addTaskResponse")
+        val taskDto = TaskDto("2", "dsds", "any title", false)
+        val resultTaskDto = apiClient.addTask(taskDto)
+    }
+    */
+
     private fun assertTaskContainsExpectedValues(task: TaskDto?) {
         assertTrue(task != null)
         assertEquals(task?.id, "1")
